@@ -5,7 +5,7 @@
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue)]()
 [![Selenium](https://img.shields.io/badge/Selenium-4.15.0-green)]()
 [![TestNG](https://img.shields.io/badge/TestNG-7.8.0-red)]()
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 
 A robust Selenium automation framework using Page Object Model and TestNG for testing the [Coffee Cart Application](https://coffee-cart.app/).
 
@@ -141,10 +141,6 @@ src/test/java/com/coffeecart/
 
 Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🐛 Issues & Support
 
 If you encounter any issues or have questions:
@@ -159,6 +155,3 @@ If you encounter any issues or have questions:
 - **Browsers Tested**: Chrome, Firefox
 - **Last Updated**: October 2025
 
----
-
-**Built with ❤️ for reliable web automation testing**
