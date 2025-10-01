@@ -137,10 +137,6 @@ src/test/java/com/coffeecart/
 - **Screenshot on Failure**: Automatic capture for debugging
 - **Thread-Safe Design**: Concurrent test execution without conflicts
 
-## 🤝 Contributing
-
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
 ## 🐛 Issues & Support
 
 If you encounter any issues or have questions:
