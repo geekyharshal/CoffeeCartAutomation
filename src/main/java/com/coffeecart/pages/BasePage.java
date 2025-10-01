@@ -16,13 +16,7 @@ public class BasePage {
     }
     
     protected void click(WebElement element) {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-        } catch (Exception e) {
-            // Fallback: JavaScript click
-            ((org.openqa.selenium.JavascriptExecutor) driver)
-                .executeScript("arguments[0].click();", element);
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
     
     protected void sendKeys(WebElement element, String text) {

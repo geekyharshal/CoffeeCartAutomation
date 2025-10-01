@@ -19,7 +19,7 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "input[name='promotion']")
     private WebElement promoField;
     
-    @FindBy(css = ".snackbar, .success, .message, [class*='success'], [id*='success']")
+    @FindBy(css = ".snackbar")
     private WebElement successMessage;
     
     @FindBy(css = ".order-summary")
@@ -44,18 +44,7 @@ public class CheckoutPage extends BasePage {
     }
     
     public boolean isSuccessMessageDisplayed() {
-        try {
-            Thread.sleep(2000); // Wait for success message
-            return isDisplayed(successMessage);
-        } catch (Exception e) {
-            // Try alternative selectors
-            try {
-                WebElement msg = driver.findElement(org.openqa.selenium.By.cssSelector(".snackbar, .success, .message, [class*='success'], [id*='success']"));
-                return msg.isDisplayed();
-            } catch (Exception ex) {
-                return false;
-            }
-        }
+        return isDisplayed(successMessage);
     }
     
     public String getOrderSummary() {

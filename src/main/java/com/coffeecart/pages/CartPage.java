@@ -74,20 +74,8 @@ public class CartPage extends BasePage {
     }
     
     public void removeFirstItem() {
-        try {
-            Thread.sleep(1000); // Wait for cart to load
-            if (!removeButtons.isEmpty()) {
-                WebElement removeBtn = removeButtons.get(0);
-                // Wait for button to be visible
-                wait.until(org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf(removeBtn));
-                click(removeBtn);
-            }
-        } catch (Exception e) {
-            // Fallback: try JavaScript click
-            if (!removeButtons.isEmpty()) {
-                ((org.openqa.selenium.JavascriptExecutor) driver)
-                    .executeScript("arguments[0].click();", removeButtons.get(0));
-            }
+        if (!removeButtons.isEmpty()) {
+            click(removeButtons.get(0));
         }
     }
     
