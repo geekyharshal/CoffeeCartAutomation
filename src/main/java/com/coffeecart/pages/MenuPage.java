@@ -47,33 +47,57 @@ public class MenuPage extends BasePage {
     }
     
     public void addItemToCart(int index) {
-        if (index < coffeeItems.size()) {
-            click(coffeeItems.get(index));
+        try {
+            Thread.sleep(1000); // Wait for page load
+            if (index < coffeeItems.size()) {
+                click(coffeeItems.get(index));
+                Thread.sleep(1000); // Wait for cart update
+            }
+        } catch (Exception e) {
+            // Handle exception
         }
     }
     
     public void addEspresso() {
-        click(espressoButton);
+        try {
+            click(espressoButton);
+            Thread.sleep(500);
+        } catch (Exception e) {}
     }
     
     public void addCappuccino() {
-        click(cappuccinoButton);
+        try {
+            click(cappuccinoButton);
+            Thread.sleep(500);
+        } catch (Exception e) {}
     }
     
     public void addMocha() {
-        click(mochaButton);
+        try {
+            click(mochaButton);
+            Thread.sleep(500);
+        } catch (Exception e) {}
     }
     
     public void addAmericano() {
-        click(americanoButton);
+        try {
+            click(americanoButton);
+            Thread.sleep(500);
+        } catch (Exception e) {}
     }
     
     public void addFlatWhite() {
-        click(flatWhiteButton);
+        try {
+            click(flatWhiteButton);
+            Thread.sleep(500);
+        } catch (Exception e) {}
     }
     
     public void addEspressoMacchiato() {
-        click(espressoMacchiatoButton);
+        try {
+            click(espressoMacchiatoButton);
+            Thread.sleep(500);
+        } catch (Exception e) {}
     }
     
     public boolean areItemsDisplayed() {

@@ -1,76 +1,51 @@
 package com.coffeecart.utils;
 
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ExcelReader {
     
-    public Object[][] getTestData(String sheetName) {
-        Object[][] data = null;
-        try {
-            FileInputStream fis = new FileInputStream("resources/testdata.xlsx");
-            Workbook workbook = new XSSFWorkbook(fis);
-            Sheet sheet = workbook.getSheet(sheetName);
+    public Object[][] getTestData(String fileName) {
+        List<String[]> dataList = new ArrayList<>();
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(fileName);
+             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             
-            int rowCount = sheet.getLastRowNum();
-            int colCount = sheet.getRow(0).getLastCellNum();
-            
-            data = new Object[rowCount][colCount];
-            
-            for (int i = 1; i <= rowCount; i++) {
-                Row row = sheet.getRow(i);
-                for (int j = 0; j < colCount; j++) {
-                    Cell cell = row.getCell(j);
-                    data[i-1][j] = getCellValue(cell);
-                }
+            String line = br.readLine(); // Skip header
+            while ((line = br.readLine()) != null) {
+                dataList.add(line.split(","));
             }
-            
-            workbook.close();
-            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        
+        Object[][] data = new Object[dataList.size()][];
+        for (int i = 0; i < dataList.size(); i++) {
+            data[i] = dataList.get(i);
         }
         return data;
     }
     
     public Map<String, String> getCoffeeItems() {
         Map<String, String> coffeeItems = new HashMap<>();
-        try {
-            FileInputStream fis = new FileInputStream("resources/testdata.xlsx");
-            Workbook workbook = new XSSFWorkbook(fis);
-            Sheet sheet = workbook.getSheet("CoffeeItems");
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("testdata.csv");
+             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             
-            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-                Row row = sheet.getRow(i);
-                String itemName = getCellValue(row.getCell(0)).toString();
-                String price = getCellValue(row.getCell(2)).toString();
-                coffeeItems.put(itemName, price);
+            String line = br.readLine(); // Skip header
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 3) {
+                    coffeeItems.put(parts[0], parts[2]);
+                }
             }
-            
-            workbook.close();
-            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return coffeeItems;
-    }
-    
-    private Object getCellValue(Cell cell) {
-        if (cell == null) return "";
-        
-        switch (cell.getCellType()) {
-            case STRING:
-                return cell.getStringCellValue();
-            case NUMERIC:
-                return cell.getNumericCellValue();
-            case BOOLEAN:
-                return cell.getBooleanCellValue();
-            default:
-                return "";
-        }
     }
 }

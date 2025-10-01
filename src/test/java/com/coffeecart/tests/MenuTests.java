@@ -14,7 +14,7 @@ public class MenuTests {
     
     @BeforeMethod
     @Parameters("browser")
-    public void setup(String browser) {
+    public void setup(@Optional("chrome") String browser) {
         DriverManager.setDriver(browser);
         menuPage = new MenuPage(DriverManager.getDriver());
         cartPage = new CartPage(DriverManager.getDriver());
