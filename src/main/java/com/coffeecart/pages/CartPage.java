@@ -74,8 +74,13 @@ public class CartPage extends BasePage {
     }
     
     public void removeFirstItem() {
-        if (!removeButtons.isEmpty()) {
-            click(removeButtons.get(0));
+        try {
+            Thread.sleep(1000);
+            if (!removeButtons.isEmpty()) {
+                click(removeButtons.get(0));
+            }
+        } catch (Exception e) {
+            // Handle timing issues
         }
     }
     

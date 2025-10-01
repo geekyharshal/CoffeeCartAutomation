@@ -44,7 +44,12 @@ public class CheckoutPage extends BasePage {
     }
     
     public boolean isSuccessMessageDisplayed() {
-        return isDisplayed(successMessage);
+        try {
+            Thread.sleep(2000);
+            return isDisplayed(successMessage);
+        } catch (Exception e) {
+            return false;
+        }
     }
     
     public String getOrderSummary() {
